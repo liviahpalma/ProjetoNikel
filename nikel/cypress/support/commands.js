@@ -26,3 +26,11 @@
 
 import 'cypress-wait-until';
 
+Cypress.Commands.add("login", (nome, senha) => {
+    cy.get('#email-input')
+        .type(nome);
+    cy.get('#password-input')
+        .type(senha);
+    cy.get('.btn.button-login')
+        .click();
+})

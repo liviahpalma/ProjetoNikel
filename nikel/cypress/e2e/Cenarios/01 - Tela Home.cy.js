@@ -1,4 +1,5 @@
 import { visitar } from "../Funcoes/funcoes"
+import "../../support/commands"
 
 describe('Testes Automatizados - Projeto Nikel', () => 
 {
@@ -31,12 +32,15 @@ describe('Testes Automatizados - Projeto Nikel', () =>
                 cy.get(".modal-content"))
             cy.get(".btn-close")
                 .click()
+            cy.waitUntil
             cy.get(".text-center.mb-3")
                 .should("be.visible")
-              
+            
+         
+
             cy.get(".link-default")
                 .click()
-            cy.get(".btn-secondary")
+            cy.get(".btn.btn-secondary.button-cancel")
                 .click()
             cy.waitUntil(() =>
                 cy.get(".text-center.mb-3"))
@@ -44,7 +48,7 @@ describe('Testes Automatizados - Projeto Nikel', () =>
                 .should("be.visible")
         }) 
 
-        it('02.3 - Validar crianção de Conta - Válida', () => 
+        it.only('02.3 - Validar crianção de Conta - Válida', () => 
         {
             cy.get(".link-default")
                 .click()
@@ -53,7 +57,7 @@ describe('Testes Automatizados - Projeto Nikel', () =>
             cy.get("#email-create-input") 
                 .type("myuseerrr@gmail.com")
             cy.get("#password-create-input")
-                .type("123abC")
+                .type("Senha2023")
             cy.get(".btn.button-default")
                 .click()
 
@@ -113,14 +117,9 @@ describe('Testes Automatizados - Projeto Nikel', () =>
     });
 
     context('03 - Validar Login', () => {
-        it('03.1 - Login Válido', () => 
+        it.only('03.1 - Login Válido', () => 
         {
-            cy.get("#email-input")
-                .type("myuseerrr@gmail.com")
-            cy.get("#password-input")
-                .type("123abC")
-            cy.get(".btn.button-login")
-                .click()
+            cy.login('myuseerrr@gmail.com','Senha2023')
             cy.get(".bi.bi-cash-coin.color-primary.icon-detail")
                 .should("be.visible")
         }) 
